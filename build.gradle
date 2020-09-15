@@ -25,7 +25,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.1.11.RELEASE'
     compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.1'
-    compile group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.1.21'
+    compile group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.1.10'
     compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
