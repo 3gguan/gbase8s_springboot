@@ -16,7 +16,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
   datasource:
     druid:
-      url: jdbc:gbasedbt-sqli://${GBASE_IP:172.16.3.138}:${GBASE_PORT:31111}/jdbctest:GBASEDBTSERVER=ol_gbasedbt_1;DB_LOCALE=en_us.8859-1;CLIENT_LOCALE=en_us.8859-1;IFX_LOCK_MODE_WAIT=30
+      url: jdbc:gbasedbt-sqli://${GBASE_IP:172.16.3.138}:${GBASE_PORT:31111}/jdbctest:GBASEDBTSERVER=ol_gbasedbt_1;DB_LOCALE=zh_CN.utf8;CLIENT_LOCALE=zh_CN.utf8;IFX_LOCK_MODE_WAIT=30
       username: ${GBASE_USER:gbasedbt}
       password: ${GBASE_PASSWORD:gbasedbt123}
       driver-class-name: com.gbasedbt.jdbc.Driver
