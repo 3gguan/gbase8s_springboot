@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: jdbctest
+  labels:
+    name: jdbctest
+spec:
+  replicas: 1
+  selector:
+    name: jdbctest
+  template:
+    metadata:
+      labels:
+        name: jdbctest
+    spec:
+      nodeSelector:
+        name: "master"
+      containers:
+        - name: jdbctest
+          image: jdbctest:8.8
+          ports:
+            - name: serverport
+              containerPort: 31120
+          env:
+            - name: GBASE_IP
+              value: gbase8s
+            - name: GBASE_PORT
+              value: "9088"
+            - name: GBASE_USER
+              value: gbasedbt
+            - name: GBASE_PASSWORD
+              value: gbasedbt123
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jdbctest
+  labels:
+    name: jdbctest
+spec:
+  type: NodePort
+  ports:
+    - name: serverport
+      port: 31120
+      targetPort: 31120
+      nodePort: 31120
+  selector:
+    name: jdbctest
