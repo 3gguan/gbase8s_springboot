@@ -1,0 +1,64 @@
+server:
+  port: 31120
+  servlet:
+    context-path: /jdbctest
+
+spring:
+  application:
+    name: ${SERVICE_NAME:jdbctest}
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    druid:
+      url: jdbc:gbasedbt-sqli://${GBASE_IP:172.16.3.138}:${GBASE_PORT:31111}/jdbctest:GBASEDBTSERVER=ol_gbasedbt_1;DB_LOCALE=en_us.8859-1;CLIENT_LOCALE=en_us.8859-1;IFX_LOCK_MODE_WAIT=30
+      username: ${GBASE_USER:gbasedbt}
+      password: ${GBASE_PASSWORD:gbasedbt123}
+      driver-class-name: com.gbasedbt.jdbc.Driver
+      filters: stat
+
+      #数据库链接池中活动数目的最大值
+      max-active: 20
+      #启动连接，初始建立的链接数量
+      initial-size: 1
+      #空闲状态等待最长时间
+      max-wait: 60000
+      #数据库连接池的最小空闲链接数目
+      min-idle: 1
+      #空闲连接检查、废弃连接清理、空闲连接池大小调整之间的操作时间间隔
+      time-between-eviction-runs-millis: 60000
+      #空闲链接最少空闲多久会被删除
+      min-evictable-idle-time-millis: 30000
+      #获取链接是=时连接校验的sql语句
+      validation-query: select count(*) from systables
+      #连接空闲时是否连接测试
+      test-while-idle: true
+      #从链接测试连接时，是否测试该链接
+      test-on-borrow: false
+      #归还链接=时是否测试该链接
+      test-on-return: false
+      #是否池化statements
+      pool-prepared-statements: true
+      #最大的打开prepared statements数量
+      max-open-prepared-statements: 20
+
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.gbase.jdbctest.mapper
+
+logging:
+  level:
+    com:
+      gbase:
+        jdbctest: debug
+
+id:
+  workerId: 0
+  datacenterId: 0
